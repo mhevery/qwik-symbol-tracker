@@ -5,6 +5,7 @@ import { useUser } from "./layout";
 
 export default component$(() => {
   const user = useUser();
+  console.log(user);
   return (
     <>
       <h1>Qwiksand</h1>

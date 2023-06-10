@@ -46,7 +46,6 @@ function symbolTracker(
   };
   let timeoutID: ReturnType<typeof setTimeout> | null;
   function flush() {
-    console.log("flush");
     timeoutID = null;
     if (qSymbols.length > flushSymbolIndex) {
       const payload = {
@@ -74,7 +73,6 @@ function symbolTracker(
   document.addEventListener("qsymbol", (_event) => {
     const event = _event as CustomEvent<QSymbolDetail>;
     const detail = event.detail;
-    console.log("QSymbol", event.detail);
     const timeDelta = 0 - lastReqTime + (lastReqTime = detail.reqTime);
     qSymbols.push({
       symbol: detail.symbol,

@@ -2,7 +2,7 @@
  * PUBLIC API - Change with backwards compatibility in mind.
  */
 
-import { ZodObject, z } from "zod";
+import { z } from "zod";
 
 export interface QSymbolBeaconPayload {
   /**

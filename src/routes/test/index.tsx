@@ -6,7 +6,7 @@ import {
 } from "@builder.io/qwik";
 import { routeLoader$ } from "@builder.io/qwik-city";
 
-const useList = routeLoader$(() => {
+export const useList = routeLoader$(() => {
   return ["Adam", "Misko", "Manu"];
 });
 
