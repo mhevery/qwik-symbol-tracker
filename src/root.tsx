@@ -23,7 +23,9 @@ export default component$(() => {
         <meta charSet="utf-8" />
         <link rel="manifest" href="/manifest.json" />
         <RouterHead />
-        <QwikSymbolTracker publicApiKey={import.meta.env.PUBLIC_SANDBOX_KEY} />
+        <QwikSymbolTracker
+          publicApiKey={import.meta.env.PUBLIC_BUNDLE_DEFRAG_KEY}
+        />
       </head>
       <body lang="en">
         <RouterOutlet />
