@@ -26,7 +26,7 @@ export default component$(() => {
   );
   return (
     <div>
-      <h1>Qwiksand test page</h1>
+      <h1>Qwik Defrag Test Page</h1>
       <div>
         Count: {count.value}/{negativeCount.value}
       </div>

@@ -7,14 +7,14 @@ import {
 import { RouterHead } from "./components/router-head/router-head";
 
 import "./global.css";
-import Qwiksand from "./components/qwiksand";
+import QwikSymbolTracker from "./components/qwik-symbol-tracker";
 
 export default component$(() => {
   /**
    * The root of a QwikCity site always start with the <QwikCityProvider> component,
    * immediately followed by the document's <head> and <body>.
    *
-   * Dont remove the `<head>` and `<body>` elements.
+   * Don't remove the `<head>` and `<body>` elements.
    */
 
   return (
@@ -23,7 +23,7 @@ export default component$(() => {
         <meta charSet="utf-8" />
         <link rel="manifest" href="/manifest.json" />
         <RouterHead />
-        <Qwiksand publicApiKey="__self__" />
+        <QwikSymbolTracker publicApiKey={import.meta.env.PUBLIC_SANDBOX_KEY} />
       </head>
       <body lang="en">
         <RouterOutlet />

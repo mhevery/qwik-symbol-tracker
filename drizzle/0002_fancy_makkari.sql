@@ -1,0 +1,1 @@
+CREATE UNIQUE INDEX `publicApiKeyIndex` ON `applications` (`public_api_key`);

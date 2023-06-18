@@ -1,14 +1,20 @@
 import { component$ } from "@builder.io/qwik";
-import type { DocumentHead } from "@builder.io/qwik-city";
+import { routeLoader$, type DocumentHead } from "@builder.io/qwik-city";
 import { createClient } from "@supabase/supabase-js";
-import { useUser } from "./layout";
+import { getDB } from "../db";
+import { applicationTable } from "../db/schema";
+
+export const useApplications = routeLoader$(async () => {
+  const db = await getDB();
+  const apps = await db.select().from(applicationTable).all();
+  return apps;
+});
 
 export default component$(() => {
-  const user = useUser();
-  console.log(user);
+  const apps = useApplications();
   return (
     <>
-      <h1>Qwiksand</h1>
+      <h1>Qwik Bundle Defrag</h1>
       <p>
         Can't wait to see what you build with qwik!
         <br />
@@ -26,6 +32,16 @@ export default component$(() => {
           check
         </button>
       </p>
+      <hr />
+      <h2>Applications</h2>
+      <a href="/app/new">Create new application</a>
+      <ul>
+        {apps.value.map((app) => (
+          <li key={app.id}>
+            <a href={`/app/${app.publicApiKey}`}>{app.name}</a>
+          </li>
+        ))}
+      </ul>
     </>
   );
 });

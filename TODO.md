@@ -1,7 +1,7 @@
 # TODO
 
 - [ ] Have service worker fire an event every time there is a cache miss.
-- [ ] Send cache miss events to the qwiksand server.
+- [ ] Send cache miss events to the symbol tracker server.
 - [ ] Can the QSymbol event to have requesting Symbol, so that we can create chains of requests?
 
 # Thoughts
@@ -12,3 +12,7 @@
 # Open Questions
 
 - How do we decide which symbol is part of route and which is part of layout?
+
+## NOTES
+
+- http://localhost:5173/auth/jwt/#access_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJhdXRoZW50aWNhdGVkIiwiZXhwIjoxNjg3MDEwMjE4LCJzdWIiOiIxYTkxYjFkZC1mOTY5LTQ3MmYtODcyOS1lMGY5YWYzNTE5NGEiLCJlbWFpbCI6Im1pc2tvQGhldmVyeS5jb20iLCJwaG9uZSI6IiIsImFwcF9tZXRhZGF0YSI6eyJwcm92aWRlciI6ImdpdGh1YiIsInByb3ZpZGVycyI6WyJnaXRodWIiXX0sInVzZXJfbWV0YWRhdGEiOnsiYXZhdGFyX3VybCI6Imh0dHBzOi8vYXZhdGFycy5naXRodWJ1c2VyY29udGVudC5jb20vdS8xMTE5NTE_dj00IiwiZW1haWwiOiJtaXNrb0BoZXZlcnkuY29tIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImZ1bGxfbmFtZSI6Ik1pxaFrbyBIZXZlcnkiLCJpc3MiOiJodHRwczovL2FwaS5naXRodWIuY29tIiwibmFtZSI6Ik1pxaFrbyBIZXZlcnkiLCJwcmVmZXJyZWRfdXNlcm5hbWUiOiJtaGV2ZXJ5IiwicHJvdmlkZXJfaWQiOiIxMTE5NTEiLCJzdWIiOiIxMTE5NTEiLCJ1c2VyX25hbWUiOiJtaGV2ZXJ5In0sInJvbGUiOiJhdXRoZW50aWNhdGVkIiwiYWFsIjoiYWFsMSIsImFtciI6W3sibWV0aG9kIjoib2F1dGgiLCJ0aW1lc3RhbXAiOjE2ODcwMDY2MTh9XSwic2Vzc2lvbl9pZCI6IjJlZjhlMjJhLWRiMGYtNDVhNS05Zjk5LWZhMmJkOWE0ZmZkYyJ9.EXXRZ4svMewaIZrA_3ULI3HVYLGg0m1re4RcWAPTTTA&expires_in=3600&provider_refresh_token=ghr_xgrrGzSbbGRL34Wp39JU9nxtN27Pr1v1He8FjE7x7wbExGGs7nfJszJDAmZuoKasxZ0KxJ1HSzgc&provider_token=ghu_KyinFfI4nsfj4si1ZLrICvpUFfbQnC1bP8mV&refresh_token=zTtTYbJ5YauN4KpZkcL9kA&token_type=bearer

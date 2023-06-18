@@ -1,9 +1,9 @@
-import { defineConfig } from "vite";
-import { qwikVite } from "@builder.io/qwik/optimizer";
 import { qwikCity } from "@builder.io/qwik-city/vite";
-import tsconfigPaths from "vite-tsconfig-paths";
 import { qwikReact } from "@builder.io/qwik-react/vite";
-import {getRUBundles} from './src/ru-bundles';
+import { qwikVite } from "@builder.io/qwik/optimizer";
+import { defineConfig } from "vite";
+import tsconfigPaths from "vite-tsconfig-paths";
+import { getBundleGrouping } from './src/routes/api/v1/[publicApiKey]/bundles/chunks';
 
 export default defineConfig(async () => {
   return {
@@ -11,7 +11,7 @@ export default defineConfig(async () => {
       {
         entryStrategy: {
           type: 'smart',
-          manual: await getRUBundles('.db/__self__/'),
+          manual: await getBundleGrouping('13bfevpuljv.i'),
         },
       }
     ), tsconfigPaths(), qwikReact()],

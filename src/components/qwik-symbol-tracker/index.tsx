@@ -14,8 +14,8 @@ export default component$<{ publicApiKey: string }>(({ publicApiKey }) => {
   );
 });
 
-interface QwiksandWindow {
-  qwiksand: {
+interface QwikSymbolTrackerWindow {
+  qSymbolTracker: {
     symbols: QSymbolBeacon[];
     sessionID: string;
     publicApiKey: string;
@@ -29,7 +29,7 @@ interface QSymbolDetail {
 }
 
 function symbolTracker(
-  window: QwiksandWindow,
+  window: QwikSymbolTrackerWindow,
   document: Document,
   location: Location,
   navigator: Navigator,
@@ -37,9 +37,10 @@ function symbolTracker(
 ) {
   const sessionID = Math.random().toString(36).slice(2);
   const qSymbols: QSymbolBeacon[] = [];
+  const existingSymbols: Set<string> = new Set();
   let flushSymbolIndex: number = 0;
   let lastReqTime: number = 0;
-  window.qwiksand = {
+  window.qSymbolTracker = {
     symbols: qSymbols,
     publicApiKey,
     sessionID,
@@ -73,13 +74,17 @@ function symbolTracker(
   document.addEventListener("qsymbol", (_event) => {
     const event = _event as CustomEvent<QSymbolDetail>;
     const detail = event.detail;
-    const timeDelta = 0 - lastReqTime + (lastReqTime = detail.reqTime);
-    qSymbols.push({
-      symbol: detail.symbol,
-      timeDelta: Math.round(timeDelta),
-      pathname: location.pathname,
-      interaction: !!detail.element,
-    });
-    debounceFlush();
+    const symbol = detail.symbol;
+    if (!existingSymbols.has(symbol)) {
+      existingSymbols.add(symbol);
+      const timeDelta = 0 - lastReqTime + (lastReqTime = detail.reqTime);
+      qSymbols.push({
+        symbol: symbol,
+        timeDelta: Math.round(timeDelta),
+        pathname: location.pathname,
+        interaction: !!detail.element,
+      });
+      debounceFlush();
+    }
   });
 }
