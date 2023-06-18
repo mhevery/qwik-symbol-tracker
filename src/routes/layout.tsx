@@ -1,6 +1,5 @@
 import { component$, Slot } from "@builder.io/qwik";
 import { type RequestHandler } from "@builder.io/qwik-city";
-import { useSession } from "./plugin@supabase";
 
 export const onGet: RequestHandler = async ({ cacheControl }) => {
   // Control caching for this request for best performance and to reduce hosting costs:
@@ -14,7 +13,7 @@ export const onGet: RequestHandler = async ({ cacheControl }) => {
 };
 
 export default component$(() => {
-  const session = useSession();
+  // const session = useSession();
   return (
     <div>
       <header>{/* <pre>{JSON.stringify(session, null, 2)}</pre> */}</header>

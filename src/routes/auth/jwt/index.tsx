@@ -11,7 +11,9 @@ export const useJwtAuthAction = routeAction$(
       refresh_token: data.refresh_token,
     });
     console.log("RESPONSE", response);
-    // throw redirect(308, "/");
+    if (false as any) {
+      throw redirect(308, "/");
+    }
   },
   zod$({
     access_token: z.string(),
