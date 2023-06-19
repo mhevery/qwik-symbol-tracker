@@ -5,6 +5,11 @@ import {
   uniqueIndex,
 } from "drizzle-orm/sqlite-core";
 
+export type DatabaseSchema = {
+  applicationTable: typeof applicationTable;
+  symbolTable: typeof symbolTable;
+};
+
 export const applicationTable = sqliteTable(
   "applications",
   {

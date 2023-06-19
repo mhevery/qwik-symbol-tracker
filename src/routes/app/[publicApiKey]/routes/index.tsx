@@ -19,8 +19,8 @@ interface SymbolInfo {
 }
 
 export const useRawTable = routeLoader$(async ({ params }) => {
-  const db = await getDB();
-  const symbolRows = db
+  const db = getDB();
+  const symbolRows = await db
     .select()
     .from(symbolTable)
     .where(eq(symbolTable.publicApiKey, params.publicApiKey))
@@ -29,8 +29,8 @@ export const useRawTable = routeLoader$(async ({ params }) => {
 });
 
 export const useRouteInfo = routeLoader$(async ({ params }) => {
-  const db = await getDB();
-  const symbolRows = db
+  const db = getDB();
+  const symbolRows = await db
     .select()
     .from(symbolTable)
     .where(eq(symbolTable.publicApiKey, params.publicApiKey))
@@ -122,7 +122,7 @@ export const useRouteInfo = routeLoader$(async ({ params }) => {
 
 export const usePurgeRouteDataAction = routeAction$(
   async (_, { params, redirect, url }) => {
-    const db = await getDB();
+    const db = getDB();
     const response = await db
       .delete(symbolTable)
       .where(eq(symbolTable.publicApiKey, params.publicApiKey))

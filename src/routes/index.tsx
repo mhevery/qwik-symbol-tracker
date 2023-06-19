@@ -5,7 +5,7 @@ import { getDB } from "../db";
 import { applicationTable } from "../db/schema";
 
 export const useApplications = routeLoader$(async () => {
-  const db = await getDB();
+  const db = getDB();
   const apps = await db.select().from(applicationTable).all();
   return apps;
 });

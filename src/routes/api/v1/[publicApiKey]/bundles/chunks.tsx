@@ -1,14 +1,17 @@
 import { eq } from "drizzle-orm";
-import { getDB } from "../../../../../db";
 import { symbolTable } from "../../../../../db/schema";
+import { type AppDatabase } from "../../../../../db";
 
 const SEP = " ";
 
-export async function getBundleGrouping(
-  publicApiKey: string
-): Promise<Record<string, string>> {
+export async function getBundleGrouping({
+  publicApiKey,
+  db,
+}: {
+  publicApiKey: string;
+  db: AppDatabase;
+}): Promise<Record<string, string>> {
   const symbols: Record<string, string> = {};
-  const db = await getDB();
   const rows = await db
     .select()
     .from(symbolTable)

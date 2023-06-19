@@ -1,10 +1,28 @@
-import { drizzle } from "drizzle-orm/better-sqlite3";
-import Database from "better-sqlite3";
-import { migrate } from "drizzle-orm/better-sqlite3/migrator";
+import { type BaseSQLiteDatabase } from "drizzle-orm/sqlite-core";
+import { type DatabaseSchema } from "./schema";
 
-const db = drizzle(new Database(".db/sqlite.db"));
+export type AppDatabase = BaseSQLiteDatabase<
+  "async",
+  {
+    changes: number;
+    lastInsertRowid: number | bigint;
+  },
+  DatabaseSchema
+>;
 
-export async function getDB() {
-  await migrate(db, { migrationsFolder: "./drizzle" });
-  return db;
+let _db!: AppDatabase;
+
+export function getDB() {
+  if (!_db) {
+    throw new Error("DB not set");
+  }
+  return _db;
+}
+
+export async function initializeDbIfNeeded(
+  factory: () => Promise<AppDatabase>
+) {
+  if (!_db) {
+    _db = await factory();
+  }
 }

@@ -5,8 +5,8 @@ import { applicationTable } from "../../../db/schema";
 import { eq } from "drizzle-orm";
 
 export const useApplication = routeLoader$(async ({ params }) => {
-  const db = await getDB();
-  const application = db
+  const db = getDB();
+  const application = await db
     .select()
     .from(applicationTable)
     .where(eq(applicationTable.publicApiKey, params.publicApiKey))

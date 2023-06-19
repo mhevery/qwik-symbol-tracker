@@ -5,8 +5,10 @@ import { applicationTable } from "~/db/schema";
 
 export const useCreateApplicationAction = routeAction$(
   async ({ name, description }, { redirect }) => {
-    const db = await getDB();
-    const publicApiKey = (Math.random() * Number.MAX_SAFE_INTEGER).toString(36);
+    const db = getDB();
+    const publicApiKey = Math.round(
+      Math.random() * Number.MAX_SAFE_INTEGER
+    ).toString(36);
     const response = await db
       .insert(applicationTable)
       .values({

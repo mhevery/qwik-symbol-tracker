@@ -8,7 +8,7 @@ export const onPost: RequestHandler = async ({ exit, json, request }) => {
   const payload = QSymbolBeaconPayload.parse(await request.json());
   exit();
   json(200, { code: 200, message: "OK" });
-  const db = await getDB();
+  const db = getDB();
   let previousSymbol = payload.previousSymbol;
   const publicApiKey = payload.publicApiKey;
   const sessionID = payload.sessionID;

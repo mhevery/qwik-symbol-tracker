@@ -6,13 +6,14 @@
   },
   "private": true,
   "scripts": {
-    "build": "qwik build",
+    "build": "node scripts/db.migrate.cjs && qwik build",
     "build.client": "vite build",
     "build.preview": "vite build --ssr src/entry.preview.tsx",
     "build.server": "vite build -c adapters/cloudflare-pages/vite.config.ts",
     "build.types": "tsc --incremental --noEmit",
     "db.local": ".db/sqlite3 ./db/local.db",
     "db.schema.generate": "./node_modules/.bin/drizzle-kit generate:sqlite --schema=./src/db/schema.ts",
+    "db.migrate": "node scripts/db.migrate.cjs",
     "deploy": "wrangler pages publish ./dist",
     "dev": "vite --mode ssr",
     "dev.debug": "node --inspect-brk ./node_modules/vite/bin/vite.js --mode ssr --force",
@@ -54,10 +55,12 @@
     "wrangler": "^3.0.0"
   },
   "dependencies": {
+    "@libsql/client": "^0.2.1",
     "@supabase/auth-ui-react": "^0.4.2",
     "@supabase/auth-ui-shared": "^0.1.6",
     "@supabase/supabase-js": "^2.24.0",
     "better-sqlite3": "^8.4.0",
+    "dotenv": "^16.3.1",
     "drizzle-orm": "^0.26.5",
     "install": "^0.13.0",
     "npm": "^9.7.1",
